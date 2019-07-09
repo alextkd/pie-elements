@@ -222,7 +222,7 @@ class Response extends React.Component {
   render() {
     const { classes, mode, defaultResponse, index, response } = this.props;
     const { showKeypad } = this.state;
-    const { validation, answer, alternates, allowDecimals = false, allowSpaces } = response;
+    const { validation, answer, alternates, allowDecimals = false, allowSpaces, equivLiteral = false } = response;
     const hasAlternates = Object.keys(alternates || {}).length > 0;
     const classNames = {
       editor: classes.responseEditor,
@@ -300,6 +300,16 @@ class Response extends React.Component {
                   />
                 }
               />
+              {validation === 'literal' && (<FormControlLabel
+                classes={{ root: classes.configLabel }}
+                label="EquivLiteral"
+                control={
+                  <Checkbox
+                    checked={equivLiteral}
+                    onChange={this.onConfigChanged('equivLiteral')}
+                  />
+                }
+              />)}
               {validation === 'literal' && (
                 <FormControlLabel
                   classes={{ root: classes.configLabel }}

@@ -1,6 +1,6 @@
 import debug from 'debug';
 import { getFeedbackForCorrectness } from '@pie-lib/feedback';
-import areValuesEqual from '@pie-lib/math-evaluator';
+import areValuesEqual, { prepareExpression } from '@pie-lib/math-evaluator';
 import { ResponseTypes } from './utils';
 
 import defaults from './defaults';
@@ -88,18 +88,37 @@ function getIsAnswerCorrect(correctResponseItem, answerItem, isAdvanced) {
             }
           }
 
-          if (correctResponse.allowSpaces) {
-            if (
-              acceptedValueToUse === trimSpaces(answerValueToUse) ||
-              acceptedValueToUse === answerValueToUse ||
-              trimSpaces(acceptedValueToUse) === trimSpaces(answerValueToUse)
-            ) {
+          if (correctResponse.equivLiteral) {
+            // parse into a math tree and sort by operator
+            const preparedValueOne = prepareExpression(answerValueToUse, true);
+            const preparedValueTwo = prepareExpression(acceptedValueToUse, true);
+
+            // sort nodes on the tree by commutative operators
+            [preparedValueOne, preparedValueTwo].forEach(preparedValue => {
+              preparedValue.traverse(node => {
+
+              });
+            });
+
+            //turn to string and check for equality
+            if (preparedValueOne.toString() === preparedValueTwo.toString()) {
               answerCorrect = true;
               break;
             }
-          } else if (acceptedValueToUse === answerValueToUse) {
-            answerCorrect = true;
-            break;
+          } else {
+            if (correctResponse.allowSpaces) {
+              if (
+                acceptedValueToUse === trimSpaces(answerValueToUse) ||
+                acceptedValueToUse === answerValueToUse ||
+                trimSpaces(acceptedValueToUse) === trimSpaces(answerValueToUse)
+              ) {
+                answerCorrect = true;
+                break;
+              }
+            } else if (acceptedValueToUse === answerValueToUse) {
+              answerCorrect = true;
+              break;
+            }
           }
         }
       } else {

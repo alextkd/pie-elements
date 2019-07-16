@@ -10,7 +10,8 @@
     "release": "scripts/build build release",
     "release:next": "scripts/build build release --next --lernaLogLevel silly",
     "postinstall": "lerna bootstrap && git config --local include.path ../.gitconfig",
-    "prepack": "scripts/build changelog"
+    "prepack": "scripts/build changelog",
+    "cypress:open": "cypress open"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -31,6 +32,7 @@
     "babel-jest": "^23.4.2",
     "chalk": "^2.4.2",
     "child-process-promise": "^2.2.1",
+    "cypress": "^3.4.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
@@ -42,8 +44,8 @@
     "pacote": "^9.5.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "semver": "^5.6.0",
     "rimraf": "^2.6.2",
+    "semver": "^5.6.0",
     "yarn": "^1.9.4"
   },
   "workspaces": [

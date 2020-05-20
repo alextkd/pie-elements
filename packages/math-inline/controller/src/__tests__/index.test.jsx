@@ -858,3 +858,112 @@ describe('PD-66', () => {
     expect(result).toEqual({ score: 1 });
   });
 });
+
+describe('common denominator symbolic equality', () => {
+  const question = {
+    id: '1',
+    prompt: 'prompt',
+    rationale: 'rationale',
+    element: 'math-inline',
+    feedbackEnabled: true,
+    promptEnabled: true,
+    rationaleEnabled: true,
+    teacherInstructionsEnabled: true,
+    studentInstructionsEnabled: true,
+    responseType: 'Advanced Multi',
+    expression: '{{response}}',
+    equationEditor: 'statistics',
+    responses: [
+      {
+        allowSpaces: true,
+        answer: '\\frac{x-5}{6}',
+        id: '1',
+        validation: 'symbolic',
+      },
+      {
+        allowSpaces: true,
+        answer: '\\frac{x}{3}',
+        id: '1',
+        validation: 'symbolic',
+      },
+      {
+        allowSpaces: true,
+        answer: '\\frac{x}{3}\\times 4',
+        id: '1',
+        validation: 'symbolic',
+      },
+      {
+        allowSpaces: true,
+        answer: '\\frac{x}{4}\\times 5',
+        id: '1',
+        validation: 'symbolic',
+      },
+      {
+        allowSpaces: true,
+        answer: '\\frac{x}{3}\\times4\\text{dollars}',
+        id: '1',
+        validation: 'symbolic',
+      },
+    ],
+  };
+
+  it('scores 1', async () => {
+    const session = {
+      id: '1',
+      answers: { r1: { value: '\\frac{x}{6}-\\frac{5}{6}' } },
+      completeAnswer: '\\frac{x}{6}-\\frac{5}{6}'
+    };
+
+    const env = { mode: 'evaluate' };
+    const result = await outcome(question, session, env);
+    expect(result).toEqual({ score: 1 });
+  });
+
+  it('scores 0', async () => {
+    const session = {
+      id: '1',
+      answers: { r1: { value: '\\frac{x}{3}-\\frac{2}{3}' } },
+      completeAnswer: '\\frac{x}{3}-\\frac{2}{3}'
+    };
+
+    const env = { mode: 'evaluate' };
+    const result = await outcome(question, session, env);
+    expect(result).toEqual({ score: 0 });
+  });
+
+  it('scores 1', async () => {
+    const session = {
+      id: '1',
+      answers: { r1: { value: '\\frac{4}{3}x' } },
+      completeAnswer: '\\frac{4}{3}x'
+    };
+
+    const env = { mode: 'evaluate' };
+    const result = await outcome(question, session, env);
+    expect(result).toEqual({ score: 1 });
+  });
+
+  it('scores 1', async () => {
+    const session = {
+      id: '1',
+      answers: { r1: { value: '\\frac{5}{3}x' } },
+      completeAnswer: '\\frac{5}{3}x'
+    };
+
+    const env = { mode: 'evaluate' };
+    const result = await outcome(question, session, env);
+    expect(result).toEqual({ score: 1 });
+  });
+
+  it('scores 1', async () => {
+    const session = {
+      id: '1',
+      answers: { r1: { value: '\\frac{4}{3}x\\text{dollars}' } },
+      completeAnswer: '\\frac{4}{3}x\\text{dollars}'
+    };
+
+    const env = { mode: 'evaluate' };
+    const result = await outcome(question, session, env);
+    expect(result).toEqual({ score: 1 });
+  });
+});

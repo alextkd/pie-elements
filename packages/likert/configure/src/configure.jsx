@@ -39,10 +39,10 @@ const toolsArr = [
   tools.point(),
   tools.circle(),
   tools.polygon(),
-  tools.segment(),
-  tools.vector(),
-  tools.ray(),
-  tools.line(),
+  // tools.segment(),
+  // tools.vector(),
+  // tools.ray(),
+  // tools.line(),
   tools.sine(),
   tools.parabola()
 ];

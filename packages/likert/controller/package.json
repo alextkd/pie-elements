@@ -1,0 +1,25 @@
+{
+  "name": "@pie-element/likert-controller",
+  "private": true,
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "@pie-lib/controller-utils": "^0.2.18",
+    "@pie-lib/feedback": "^0.4.22",
+    "@pie-lib/graphing-utils": "^1.1.15",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^22.4.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

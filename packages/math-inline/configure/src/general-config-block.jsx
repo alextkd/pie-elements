@@ -127,10 +127,10 @@ function prepareForStatic(expression) {
 
 function prepareForModel(expression) {
   if (expression) {
-    return expression
+    return `\\displaylines{${expression
       .replace(ANSWER_BLOCK_REGEX, () => '{{response}}')
       .replace(TEMPORARY_RESPONSE_FIELD, () => '{{response}}')
-      .replace(NEWLINE_BLOCK, () => '\\newline');
+      .replace(NEWLINE_BLOCK, () => '\\newline')}}`;
   }
 }
 

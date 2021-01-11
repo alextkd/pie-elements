@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.12](https://github.com/pie-framework/pie-elements/compare/@pie-element/inline-dropdown@3.5.11...@pie-element/inline-dropdown@3.5.12) (2020-11-07)
+
+**Note:** Version bump only for package @pie-element/inline-dropdown
+
+
+
+
+
+## [3.5.11](https://github.com/pie-framework/pie-elements/compare/@pie-element/inline-dropdown@3.5.10...@pie-element/inline-dropdown@3.5.11) (2020-10-29)
+
+
+### Bug Fixes
+
+* controller require ([55fb469](https://github.com/pie-framework/pie-elements/commit/55fb469))
+
+
+
+
+
+## [3.5.10](https://github.com/pie-framework/pie-elements/compare/@pie-element/inline-dropdown@3.5.9...@pie-element/inline-dropdown@3.5.10) (2020-10-29)
+
+**Note:** Version bump only for package @pie-element/inline-dropdown
+
+
+
+
+
 ## [3.5.9](https://github.com/pie-framework/pie-elements/compare/@pie-element/inline-dropdown@3.5.8...@pie-element/inline-dropdown@3.5.9) (2020-10-16)
 
 **Note:** Version bump only for package @pie-element/inline-dropdown

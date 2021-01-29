@@ -312,7 +312,7 @@ describe('controller', () => {
           {
             ...question,
             partialScoring: true,
-            categories: mC1,
+            categories: { ...mC1 },
             correctResponse: scoringCorrectResponseNoAlternates,
           },
           session,

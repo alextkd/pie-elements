@@ -161,6 +161,12 @@ export class GraphingConfig extends React.Component {
     );
   };
 
+  resetMarkups = () => {
+    const model = { ...this.props.model, backgroundMarks: [] }
+    console.log("this modellllll", model);
+    this.props.onChange(model);
+  }
+
   changeBackgroundMarks = backgroundMarks => {
     const model = { ...this.props.model, backgroundMarks };
     this.props.onChange(model);
@@ -203,6 +209,7 @@ export class GraphingConfig extends React.Component {
               size={{ width: graph.width, height: graph.height }}
               title={title}
               toolbarTools={toolbarTools}
+              onResetMarkup={this.resetMarkups}
             />
           </div>
 

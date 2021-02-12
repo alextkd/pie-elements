@@ -98,6 +98,27 @@ export class CorrectResponse extends React.Component {
     onChange(model);
   };
 
+    removeMarks = ()=> {
+    const { model, onChange } = this.props;
+      console.log("thisModel---------------------------------------------------------------------", model)
+      const updatedModel = {
+        ...model,
+        answers: {
+          alternate1: {
+          ...name,
+          marks: []
+          },
+          correctAnswer: {
+            ...name,
+            marks:[]
+          }
+
+        }
+      };
+      onChange(updatedModel);
+      console.log("-------------CHANGED MODEL", updatedModel);
+  };
+
   changeToolbarTools = toolbarTools => {
     const { model, onChange } = this.props;
     model.toolbarTools = toolbarTools;
@@ -165,9 +186,10 @@ export class CorrectResponse extends React.Component {
                   marks={marks}
                   onChangeMarks={newMarks => this.changeMarks(mark, newMarks)}
                   range={range}
-                  size={{ width: graph.width, height: graph.height }}
+                  size={{ width: 600, height: graph.height }}
                   title={title}
                   toolbarTools={toolbarTools}
+                  onResetMarkup={newMarks => this.removeMarks()}
                 />
               </div>
             )

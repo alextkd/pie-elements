@@ -9,10 +9,15 @@ import defaultValues from './defaults';
 const log = debug('pie-elements:graphing:configure');
 import isEmpty from 'lodash/isEmpty';
 
-const sortedAnswers = (answers) => Object.keys(answers).sort().reduce((result, key) => {
-  result[key] = answers[key];
-  return result;
-}, {});
+// this function is implemented in controller as well
+const sortedAnswers = (answers) => {
+  answers = answers || {};
+
+  return Object.keys(answers).sort().reduce((result, key) => {
+    result[key] = answers[key];
+    return result;
+  }, {});
+};
 
 export default class GraphLinesConfigure extends HTMLElement {
   static createDefaultModel = (model = {}) => {
